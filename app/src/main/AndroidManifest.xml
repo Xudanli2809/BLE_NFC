@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.huang.lochy">
+
+    <uses-sdk android:minSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!--写存储卡-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!--读存储卡-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /><!--读写手机状态和身份-->
+
+
+    <!--在有些机型上需要获取位置信息才能扫描到蓝牙设备，此权限在API23+需要动态申请-->
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" /><!--蓝牙管理-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /><!--蓝牙操作权限-->
+
+    <!--true表示此应用只能在支持BLE的设备上运行安装，false表示android设备均可正常安装运行，需要在代码运行时判断设备是否支持BLE feature-->
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.dk.bleNfc.BleNfcDeviceService" />
+    </application>
+
+</manifest>
